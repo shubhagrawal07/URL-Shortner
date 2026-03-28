@@ -51,14 +51,14 @@ class UrlControllerWebMvcTest {
 	@Test
 	void postCreateReturnsPayload() throws Exception {
 		when(shortLinkService.create(anyString()))
-				.thenReturn(new CreateUrlResponse("1", "http://localhost:8080/r/1", "https://example.com/a"));
+				.thenReturn(new CreateUrlResponse("Ab3xY9z", "http://localhost:8080/r/Ab3xY9z", "https://example.com/a"));
 
 		mockMvc.perform(post("/api/v1/urls")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(new CreateUrlRequest("https://example.com/a"))))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.shortCode").value("1"))
-				.andExpect(jsonPath("$.shortUrl").value("http://localhost:8080/r/1"));
+				.andExpect(jsonPath("$.shortCode").value("Ab3xY9z"))
+				.andExpect(jsonPath("$.shortUrl").value("http://localhost:8080/r/Ab3xY9z"));
 	}
 
 	@Test

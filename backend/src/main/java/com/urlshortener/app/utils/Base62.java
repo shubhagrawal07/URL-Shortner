@@ -2,9 +2,6 @@ package com.urlshortener.app.utils;
 
 public final class Base62 {
 
-	private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	private static final int BASE = ALPHABET.length();
-
 	private Base62() {}
 
 	public static String encode(long value) {
@@ -14,8 +11,8 @@ public final class Base62 {
 		StringBuilder sb = new StringBuilder();
 		long n = value;
 		while (n > 0) {
-			sb.append(ALPHABET.charAt((int) (n % BASE)));
-			n /= BASE;
+			sb.append(Base62Alphabet.CHARS.charAt((int) (n % Base62Alphabet.BASE)));
+			n /= Base62Alphabet.BASE;
 		}
 		return sb.reverse().toString();
 	}

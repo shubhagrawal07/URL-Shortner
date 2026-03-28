@@ -90,6 +90,7 @@ class UrlShortenerIntegrationTest {
 		assertThat(created.getBody()).isNotNull();
 		String code = created.getBody().get("shortCode").asText();
 		assertThat(code).isNotBlank();
+		assertThat(code).hasSize(7);
 
 		ResponseEntity<Void> redirect = noRedirectClient.exchange(
 				"http://localhost:" + port + "/r/" + code, HttpMethod.GET, HttpEntity.EMPTY, Void.class);
